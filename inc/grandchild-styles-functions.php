@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) 	exit;
  * Plugin Scripts
  * @subpackage grandechile/inc/grandchild-styles-functions
  * 
- * Register and Enqueues public side styles
+ * Register and Enqueues public side styles -if used
  *
  * @since 1.0.0
  */
@@ -21,26 +21,6 @@ function grandchile_plugin_public_scripts()
                         array(), GRANDCHILE_VER, 
                         false 
                     );
-}
-
-/**
- * Plugin Core 
- * @since 1.0.0
- * 
- */
-add_action( 'admin_enqueue_scripts', 'grandchile_editor_scripts_enqueue_script' );
-/**
- * Enqueue the Code Editor and JS
- *
- * @param string $hook
- */
-function grandchile_editor_scripts_enqueue_script() 
-{
- 
-        wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
-        wp_enqueue_script( 'js-code-editor', plugin_dir_url( __FILE__ ) 
-                            . 'js/js-code-editor.js', array( 'jquery' ), '', true );
-    
 }
 
 add_action( 'wp_head', 'grandchile_page_scripts_add_head', 30 );

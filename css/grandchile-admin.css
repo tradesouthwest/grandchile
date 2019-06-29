@@ -1,0 +1,59 @@
+/* plugin: Swedest Custom
+ * admin-styles 
+ */
+ [class^="grandchile-"] {
+    box-sizing: inherit;
+}
+.grandchile-textarea{
+    max-width:89%;
+}
+.grctip {
+    display: inline-block;
+    vertical-align: top;
+    width: 1.122em;
+    height: 1.122em;
+    background: #4df;
+    color:#222222;
+    padding: 1px;
+    cursor: help;
+    border-radius: 50%;
+    text-align: center;
+    position:relative;
+    left: 0;
+    top: 0;
+    border: thin dashed #bbb;
+    line-height: 1.1;
+}
+.grctip:hover,
+.grctip.active {
+box-shadow: 0px 0px 4px 4px #ade;
+}
+.grctip:after {
+content: " ";
+}
+.grctip[data-title]:hover:after {
+    border-top: 1px solid #bbdbbd;
+    border-right: 1px solid #bbdbbd;
+    border-bottom: 2px solid #3a9d8e;
+    border-left: 3px solid #4abdae;
+    background-color: #fcfcfc;
+    box-shadow: 0 0 4px 4px #ddd;
+    position: absolute;
+    padding: 3px 8px;
+    font-size: 92.5%;
+
+    z-index: 9998;
+    margin-left: -80px;
+    margin-top: 30px;
+    width: 130px;
+	content: attr(data-title);
+}
+.grctip[data-title]:after {
+    content: '';
+    color: #111;
+    text-align: initial;
+    font-weight: lighter;
+}
+.grctip[data-title] {
+    position: relative;
+}

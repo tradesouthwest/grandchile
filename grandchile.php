@@ -56,20 +56,23 @@ function grandechile_load_plugin_textdomain()
  *
  * Enqueue admin only scripts 
  */ 
+add_action( 'admin_enqueue_scripts', 'swedest_load_admin_scripts' );   
 function swedest_load_admin_scripts() 
 {
-    /*
+     /*
      * Enqueue styles */
     wp_enqueue_style( 'grandchile-admin', 
-                    GRANDCHILE_URL . 'css/grandchile-admin.css', 
-                    array(), GRANDCHILE_VER, false 
-                    );
+                        GRANDCHILE_URL . 'css/grandchile-admin.css', 
+                        array(), GRANDCHILE_VER, false 
+                        );
+    wp_register_script( 'js-code-editor', plugin_dir_url( __FILE__ ) 
+    . 'js/js-code-editor.js', array( 'jquery' ), '', true );
+
+    // Put scripts to head or footer.
+    wp_enqueue_script( 'js-code-editor');
+    wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 }
 
-if( is_admin() ) : 
-    add_action( 'admin_enqueue_scripts', 'swedest_load_admin_scripts' );   
-
-    require_once ( plugin_dir_path(__FILE__) . 'inc/grandchild-theme-admin.php' );
-endif;
+require_once ( plugin_dir_path(__FILE__) . 'inc/grandchild-theme-admin.php' );
 require_once ( plugin_dir_path(__FILE__) . 'inc/grandchild-styles-functions.php' );
 ?>

@@ -65,7 +65,45 @@ function grandchile_register_admin_options()
             'tip'     => esc_attr__( 'Be sure to check your styles', 'grandchile' ),  
             'placeholder' => esc_attr__( '', 'grandchile' )   
         ) 
+    ); 
+    add_settings_field(
+        'grandchile_priority_order',
+        __( 'Style Editor', 'grandchile' ),
+        'grandchile_priority_order_cb',
+        'grandchile_options',
+        'grandchile_options_settings_section',
+        array( 
+            'type'        => 'number',
+            'option_name' => 'grandchile_options', 
+            'name'        => 'grandchile_priority_order',
+            'value'       => ( empty( get_option('grandchile_options')['grandchile_priority_order'] )) 
+                            ? absint( 10 ) : get_option('grandchile_options')['grandchile_priority_order'],
+            'default'     => '',
+            'description' => esc_html__( 'Enter Priority of this styles script', 'grandchile' ),
+            'tip'     => esc_attr__( '10 is default and should allow styles to show last in the head. Raise number to 11 or 12 if your styles are not taking.', 'grandchile' ),  
+            'placeholder' => esc_attr__( '', 'grandchile' )   
+        ) 
     );    
+    // settings checkbox 
+    add_settings_field(
+        'grandchile_styles_radio',
+        __('Deactivate Styles', 'grandchile'),
+        'grandchile_styles_radio_cb',
+        'grandchile_options',
+        'grandchile_options_settings_section',
+        array( 
+            'type'        => 'checkbox',
+            'option_name' => 'grandchile_options', 
+            'name'        => 'grandchile_styles_radio',
+            'value'       => ( empty( get_option('grandchile_options')['grandchile_styles_radio'] )) 
+                                ? 0 : get_option('grandchile_options')['grandchile_styles_radio'],
+            'checked'     => esc_attr( checked( 1, 
+                             get_option('grandchile_options')['grandchile_styles_radio'], 
+                             false ) ),
+            'description' => esc_html__( 'Check to use styles.', 'grandchile' ),
+            'tip'     => esc_attr__( 'Default is ON (check). Uncheck to discontinue using styles. Could be used for theme change.', 'grandchile' )  
+        )
+    ); 
 }
 
 /** 
@@ -86,6 +124,48 @@ function grandchile_print_styles_cb($args)
         $args['tip']
     );
 }
+
+/** 
+ * render for 'priority order' field
+ * @since 1.0.0
+ */
+function grandchile_priority_order_cb($args)
+{  
+    printf(
+    '<fieldset><b class="grctip" data-title="%5$s">?</b><sup></sup>
+    <p><span class="vmarg">%4$s </span></p>
+    <input id="%1$s" class="text-field" name="%2$s[%1$s]" type="%6$s" value="%3$s"/>
+    </fieldset>',
+        $args['name'],
+        $args['option_name'],
+        $args['value'],
+        $args['description'],
+        $args['tip'],
+        $args['type']
+    );
+}
+/** 
+ * switch for 'allow styles' field
+ * @since 1.0.1
+ * @input type checkbox
+ */
+function grandchile_styles_radio_cb($args)
+{ 
+     printf(
+        '<fieldset><b class="grctip" data-title="%6$s">?</b><sup></sup>
+        <input type="hidden" name="%3$s[%1$s]" value="0">
+        <input id="%1$s" type="%2$s" name="%3$s[%1$s]" value="1"  
+        class="regular-checkbox" %7$s /><br>
+        <span class="vmarg">%5$s </span></fieldset>',
+            $args['name'],
+            $args['type'],
+            $args['option_name'],
+            $args['value'],
+            $args['description'],
+            $args['tip'],
+            $args['checked']
+        );
+}   
 
 //callback for description of options section
 function grandchile_options_settings_section_callback() 

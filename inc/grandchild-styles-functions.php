@@ -53,7 +53,7 @@ add_action( 'wp_head', function()
     $html_toget = ( empty( get_option('grandchile_options')['grandchile_print_styles'])) 
     ? false : get_option('grandchile_options')['grandchile_print_styles'];
 
-    $opt_styles = ( empty( get_option('grandchile_options')['grandchile_styles_radio'])) 
+$opt_styles = ( empty( get_option('grandchile_options')['grandchile_styles_radio'])) 
     ? '0' : get_option('grandchile_options')['grandchile_styles_radio'];
 
     

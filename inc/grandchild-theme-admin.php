@@ -1,7 +1,7 @@
 <?php
 /**
- * Prevent direct access to the file.
- * @subpackage grandchile/inc/grandchild-theme-admin.php
+ * Admin panel
+ * @subpackage grandchile/inc/grandchile-theme-admin.php
  * @since 1.0
  */
 if ( ! defined( 'ABSPATH' ) ) {
@@ -19,7 +19,7 @@ function grandchile_custom_plugin_page() {
 
 	add_options_page(
 		__( 'Grandchile Options', 'grandchile' ),
-		__( 'Grandchile Editor', 'grandchile' ),
+		__( 'Grandchild Editor', 'grandchile' ),
 		'manage_options',
 		'grandchile',
 		'grandchile_render_admin_page'
@@ -62,10 +62,9 @@ function grandchile_register_admin_options()
                             ? false : get_option('grandchile_options')['grandchile_print_styles'],
             'default'     => '',
             'description' => esc_html__( 'Enter styles. Please validate', 'grandchile' ),
-            'tip'     => esc_attr__( 'Be sure to check your styles', 'grandchile' ),  
-            'placeholder' => esc_attr__( '', 'grandchile' )   
+            'tip'         => esc_attr__( 'Be sure to check your styles', 'grandchile' )
         ) 
-    ); 
+    );    
     add_settings_field(
         'grandchile_priority_order',
         __( 'Style Editor', 'grandchile' ),
@@ -80,14 +79,13 @@ function grandchile_register_admin_options()
                             ? absint( 10 ) : get_option('grandchile_options')['grandchile_priority_order'],
             'default'     => '',
             'description' => esc_html__( 'Enter Priority of this styles script', 'grandchile' ),
-            'tip'     => esc_attr__( '10 is default and should allow styles to show last in the head. Raise number to 11 or 12 if your styles are not taking.', 'grandchile' ),  
-            'placeholder' => esc_attr__( '', 'grandchile' )   
+            'tip'         => esc_attr__( '10 is default and should allow styles to show last in the head. Raise number to 11 or 12 if your styles are not taking.', 'grandchile' )  
         ) 
     );    
     // settings checkbox 
     add_settings_field(
         'grandchile_styles_radio',
-        __('Deactivate Styles', 'grandchile'),
+        __('Activate Styles', 'grandchile'),
         'grandchile_styles_radio_cb',
         'grandchile_options',
         'grandchile_options_settings_section',
@@ -100,8 +98,8 @@ function grandchile_register_admin_options()
             'checked'     => esc_attr( checked( 1, 
                              get_option('grandchile_options')['grandchile_styles_radio'], 
                              false ) ),
-            'description' => esc_html__( 'Check to use styles.', 'grandchile' ),
-            'tip'     => esc_attr__( 'Default is ON (check). Uncheck to discontinue using styles. Could be used for theme change.', 'grandchile' )  
+            'description' => esc_html__( 'Check to use styles. Uncheck to diable.', 'grandchile' ),
+            'tip'         => esc_attr__( 'Default is ON (check). Uncheck to discontinue using styles. Could be used for theme change.', 'grandchile' )  
         )
     ); 
 }
@@ -124,9 +122,8 @@ function grandchile_print_styles_cb($args)
         $args['tip']
     );
 }
-
 /** 
- * render for 'priority order' field
+ * render for '0' field
  * @since 1.0.0
  */
 function grandchile_priority_order_cb($args)
@@ -167,10 +164,11 @@ function grandchile_styles_radio_cb($args)
         );
 }   
 
+
 //callback for description of options section
 function grandchile_options_settings_section_callback() 
 {
-	esc_html_e( 'GrandChild Theme Styles', 'grandchile' );
+	echo '<h2>' . esc_html__( 'GrandChild Theme Styles Editor', 'grandchile' ) . '</h2>';
 }
 // display the plugin settings page
 function grandchile_render_admin_page()
@@ -189,11 +187,12 @@ function grandchile_render_admin_page()
 
 print( '</form>' ); 
 
-printf( '<p>%s <a href="%s" target="_blank" title="%s">%s</a></p>',
-__( 'To validate your work visit', 'grandchile' ),
-__( 'To validate your work visit', 'grandchile' ),
+printf( '<p>%s <a href="%s" target="_blank" title="%s">%s</a> <img src="%s" title="opens in new tab" alt="opens in new tab" height="14" /></p>',
+esc_html__( 'To validate your work visit', 'grandchile' ),
 esc_url( 'http://www.css-validator.org/' ),
-esc_html( 'http://www.css-validator.org/' )
+esc_attr__( 'css-validator.org', 'grandchile' ),
+esc_html__( 'css-validator.org', 'grandchile' ),
+esc_url( GRANDCHILE_URL . 'inc/external-link.png' )
 );
 	
 }

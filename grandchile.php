@@ -82,6 +82,6 @@ function grandechile_load_admin_scripts()
     wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
 }
 
-require_once ( plugin_dir_path(__FILE__) . 'inc/grandchile-theme-admin.php' );
-require_once ( plugin_dir_path(__FILE__) . 'inc/grandchile-styles-functions.php' );
+require_once ( plugin_dir_path(__FILE__) . 'inc/grandchild-theme-admin.php' );
+require_once ( plugin_dir_path(__FILE__) . 'inc/grandchild-styles-functions.php' );
 ?>

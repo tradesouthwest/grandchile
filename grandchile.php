@@ -29,19 +29,19 @@ if( !defined( 'GRANDCHILE_URL' )) { define( 'GRANDCHILE_URL',
     plugin_dir_url(__FILE__)); }
 
     // Start the plugin when it is loaded.
-    register_activation_hook(   __FILE__, 'grandechile_plugin_activation' );
-    register_deactivation_hook( __FILE__, 'grandechile_plugin_deactivation' );
+    register_activation_hook(   __FILE__, 'grandchile_plugin_activation' );
+    register_deactivation_hook( __FILE__, 'grandchile_plugin_deactivation' );
   
 /**
  * Activate/deactivate hooks
  * 
  */
-function grandechile_plugin_activation() 
+function grandchile_plugin_activation() 
 {
 
     return false;
 }
-function grandechile_plugin_deactivation() 
+function grandchile_plugin_deactivation() 
 {
     return false;
 }
@@ -51,9 +51,9 @@ function grandechile_plugin_deactivation()
  *
  * @uses slug `swedest`
  */
-add_action( 'plugins_loaded', 'grandechile_load_plugin_textdomain' );
+add_action( 'plugins_loaded', 'grandchile_load_plugin_textdomain' );
 
-function grandechile_load_plugin_textdomain() 
+function grandchile_load_plugin_textdomain() 
 {
 
     $plugin_dir = basename( dirname(__FILE__) ) .'/languages';
@@ -65,8 +65,8 @@ function grandechile_load_plugin_textdomain()
  *
  * Enqueue admin only scripts 
  */ 
-add_action( 'admin_enqueue_scripts', 'grandechile_load_admin_scripts' );   
-function grandechile_load_admin_scripts() 
+add_action( 'admin_enqueue_scripts', 'grandchile_load_admin_scripts' );   
+function grandchile_load_admin_scripts() 
 {
     /*
      * Enqueue styles */

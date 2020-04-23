@@ -57,7 +57,7 @@ function grandechile_load_plugin_textdomain()
 {
 
     $plugin_dir = basename( dirname(__FILE__) ) .'/languages';
-                  load_plugin_textdomain( 'grandechile', false, $plugin_dir );
+                  load_plugin_textdomain( 'grandchile', false, $plugin_dir );
 }
 
 /** 
